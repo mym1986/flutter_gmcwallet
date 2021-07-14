@@ -14,23 +14,22 @@ class CoinReceive extends StatefulWidget {
 }
 
 class _CoinReceiveState extends State<CoinReceive> {
-
   final _coinRepository = CoinRepository();
   String address = "";
   _CoinReceiveState() {
     _getEmail().then((val) => setState(() {
-      _coinRepository.getWallet(val.toString()).then((result) =>
-          setState(() {
-            address = result["address"];
-          }));
-    }));
+          _coinRepository
+              .getWallet(val.toString())
+              .then((result) => setState(() {
+                    address = result["address"];
+                  }));
+        }));
   }
 
-  Future<String> _getEmail() async{
+  Future<String> _getEmail() async {
     final FlutterSecureStorage storage = FlutterSecureStorage();
     return await storage.read(key: "User");
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +93,7 @@ class _CoinReceiveState extends State<CoinReceive> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: buildCoin(address),
+                      child: buildCoin(address,context),
                     )
                   ],
                 ),
@@ -107,8 +106,7 @@ class _CoinReceiveState extends State<CoinReceive> {
   }
 }
 
-Widget buildCoin(String address) {
-
+Widget buildCoin(String address, context) {
   final _walletController = TextEditingController();
   _walletController.text = address;
 
@@ -118,20 +116,20 @@ Widget buildCoin(String address) {
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 1),
-          child: SvgPicture.asset(
-            'assets/images/GMC.svg',
+          child: Image.asset(
+            'assets/images/GMClogo.png',
             height: 25,
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 5),
           child: Text(
-            "GMC",
+            "GGC",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
           ),
         ),
         Text(
-          "(GMC)",
+          "(GGC)",
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
         )
       ],
@@ -221,7 +219,13 @@ Widget buildCoin(String address) {
           height: 20,
         ),
         OutlinedButton(
-          onPressed: () {},
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text("주소가 복사되었습니다."),
+              ),
+            );
+          },
           child: Text(
             "주소복사",
             style: TextStyle(

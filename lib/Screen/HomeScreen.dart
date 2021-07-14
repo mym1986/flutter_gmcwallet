@@ -60,7 +60,7 @@ class HomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          "GMC",
+                          "GGC",
                           style: TextStyle(
                             fontSize: 50,
                             fontWeight: FontWeight.bold,

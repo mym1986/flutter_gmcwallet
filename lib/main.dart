@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Gmc Wallet',
       theme: ThemeData(),
-      home: CoinHome(),
+      home: HomeScreen(),
     );
   }
 }

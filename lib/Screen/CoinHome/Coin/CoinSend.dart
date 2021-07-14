@@ -96,7 +96,7 @@ class _CoinSendState extends State<CoinSend> {
                         },
                       ),
                       Text(
-                        "보내기(GMC)",
+                        "보내기(GGC)",
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -150,20 +150,20 @@ Widget buildTron2(String gmcBalance, String email, BuildContext context) {
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 5),
-          child: SvgPicture.asset(
-            'assets/images/GMC.svg',
+          child: Image.asset(
+            'assets/images/GMClogo.png',
             height: 25,
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 5),
           child: Text(
-            "GMC",
+            "GGC",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
           ),
         ),
         Text(
-          "(GMC)",
+          "(GGC)",
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
         )
       ],
@@ -213,8 +213,8 @@ Widget buildTron2(String gmcBalance, String email, BuildContext context) {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Center(
-                  child: SvgPicture.asset(
-                    "assets/images/GMC.svg",
+                  child: Image.asset(
+                    "assets/images/GMClogo.png",
                     height: 50,
                   ),
                 ),
@@ -246,7 +246,7 @@ Widget buildTron2(String gmcBalance, String email, BuildContext context) {
                         Padding(
                           padding: const EdgeInsets.only(left: 8.0),
                           child: Text(
-                            "GMC",
+                            "GGC",
                             style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -322,7 +322,7 @@ Widget buildTron2(String gmcBalance, String email, BuildContext context) {
             decoration: InputDecoration(
               contentPadding:
                   EdgeInsets.symmetric(horizontal: 18, vertical: 20),
-              labelText: "GMC 코인 주소를 넣어주세요.",
+              labelText: "GGC 코인 주소를 넣어주세요.",
               labelStyle: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
@@ -356,7 +356,7 @@ Widget buildTron2(String gmcBalance, String email, BuildContext context) {
             decoration: InputDecoration(
               contentPadding:
               EdgeInsets.symmetric(horizontal: 18, vertical: 20),
-              labelText: "GMC 코인 수량을 넣어주세요.",
+              labelText: "GGC 코인 수량을 넣어주세요.",
               labelStyle: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,

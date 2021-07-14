@@ -116,7 +116,7 @@ class _CoinHomeState extends State<CoinHome> {
                                       _globalKey.currentState.openDrawer();
                                     }),
                                 Text(
-                                  "GMC",
+                                  "GGC",
                                   style: TextStyle(
                                     fontSize: 27,
                                     fontWeight: FontWeight.bold,
@@ -170,7 +170,7 @@ Widget buildgmcBalace(String gmcDollar) {
             width: 180,
             height: 100,
             child: Text(
-              "Total GMC Balance",
+              "Total GGC Balance",
               style: TextStyle(fontSize: 15, color: Colors.white),
             ),
           ),
@@ -378,8 +378,8 @@ Widget buildGmc(String gmcBalance) {
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 8),
-            child: SvgPicture.asset(
-              'assets/images/GMC.svg',
+            child: Image.asset(
+              'assets/images/GMClogo.png',
               // color: Colors.red,
               height: 20,
             ),
@@ -387,12 +387,12 @@ Widget buildGmc(String gmcBalance) {
           Padding(
             padding: const EdgeInsets.only(left: 5),
             child: Text(
-              "GMC",
+              "GGC",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
           ),
           Text(
-            "(GMC)",
+            "(GGC)",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
           )
         ],
@@ -430,8 +430,8 @@ Widget buildGmc(String gmcBalance) {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        SvgPicture.asset(
-                          'assets/images/GMC.svg',
+                        Image.asset(
+                          'assets/images/GMClogo.png',
                           // color: Colors.red,
                           height: 35,
                         ),

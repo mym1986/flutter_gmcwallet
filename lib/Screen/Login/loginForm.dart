@@ -150,7 +150,7 @@ class _LoginFormState extends State<LoginForm> {
                           ),
                           child: Center(
                             child: Text(
-                              "GMC",
+                              "GGC",
                               style: TextStyle(
                                   fontSize: 50,
                                   fontWeight: FontWeight.bold,
