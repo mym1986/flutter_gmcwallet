@@ -43,6 +43,7 @@ dependencies:
   email_validator: ^2.0.1
   fluttertoast: ^7.0.1
   http: ^0.12.2
+#  kakao_flutter_sdk: ^0.4.2
 
 dev_dependencies:
   flutter_test:

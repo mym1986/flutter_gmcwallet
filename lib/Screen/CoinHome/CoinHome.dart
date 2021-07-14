@@ -250,7 +250,7 @@ Widget buildTron(String tronBalance) {
             height: 210,
             width: 400,
             child: Padding(
-              padding: const EdgeInsets.only(left: 18),
+              padding: const EdgeInsets.only(left: 30),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -266,7 +266,7 @@ Widget buildTron(String tronBalance) {
                           height: 35,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 45),
+                          padding: const EdgeInsets.only(left: 175),
                           child: Text(
                             tronBalance,
                             style: TextStyle(
@@ -278,7 +278,9 @@ Widget buildTron(String tronBalance) {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
+
                           child: Text(
+
                             "TRX",
                             style: TextStyle(
                               color: Colors.black,
@@ -420,7 +422,7 @@ Widget buildGmc(String gmcBalance) {
                       offset: Offset(0, 2)),
                 ]),
             child: Padding(
-              padding: const EdgeInsets.only(left: 18),
+              padding: const EdgeInsets.only(left: 30),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -436,7 +438,7 @@ Widget buildGmc(String gmcBalance) {
                           height: 35,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 45),
+                          padding: const EdgeInsets.only(left: 175),
                           child: Text(
                             gmcBalance,
                             style: TextStyle(

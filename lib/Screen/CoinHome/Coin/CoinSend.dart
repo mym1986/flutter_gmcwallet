@@ -232,8 +232,9 @@ Widget buildTron2(String gmcBalance, String email, BuildContext context) {
                   height: 10,
                 ),
                 Container(
+                  width: 180,
                   child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
                           gmcBalance,
@@ -303,6 +304,18 @@ Widget buildTron2(String gmcBalance, String email, BuildContext context) {
         SizedBox(
           height: 20,
         ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "코인주소",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 10,
+        ),
         Container(
           width: 400,
           height: 50,
@@ -335,6 +348,21 @@ Widget buildTron2(String gmcBalance, String email, BuildContext context) {
               ),
             ),
           ),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "코인수량",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 10,
         ),
         Container(
           width: 400,

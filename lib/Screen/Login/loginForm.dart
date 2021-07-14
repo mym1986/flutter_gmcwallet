@@ -14,6 +14,7 @@ import 'package:flutter_gmcwallet/repository/repository.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+//import 'package:kakao_flutter_sdk/all.dart';
 
 class LoginForm extends StatefulWidget {
   final Function press;
@@ -28,6 +29,10 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
 
+  // Future<void> _KakaoLoginButtonPressed() async {
+  //   String authCode = await AuthCodeClient.instance.request();
+  //   print(authCode);
+  // }
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
   bool checkBoxValue = false;
@@ -336,7 +341,7 @@ class _LoginFormState extends State<LoginForm> {
           },
           child: Text(
             'ID 찾기 ',
-            style: TextStyle(color: Colors.blue),
+            style: TextStyle(color: Colors.blue, fontSize: 16),
           ),
         ),
         Text(
@@ -350,7 +355,7 @@ class _LoginFormState extends State<LoginForm> {
           },
           child: Text(
             '비밀번호 찾기',
-            style: TextStyle(color: Colors.blue),
+            style: TextStyle(color: Colors.blue, fontSize: 16),
           ),
         ),
       ],
@@ -381,7 +386,7 @@ class _LoginFormState extends State<LoginForm> {
             },
             child: Text(
               '회원가입>',
-              style: TextStyle(color: Colors.blue),
+              style: TextStyle(color: Colors.blue, fontSize: 16),
             ),
           ),
         ],
@@ -390,6 +395,9 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   Widget buildkakaoSignUp() {
+
+
+
     return Container(
       width: 315,
       height: 50,
@@ -398,7 +406,7 @@ class _LoginFormState extends State<LoginForm> {
         color: Colors.yellow,
       ),
       child: TextButton(
-        onPressed: () {},
+        onPressed: (){},
         child: Row(
           children: <Widget>[
             SvgPicture.asset(
@@ -416,6 +424,8 @@ class _LoginFormState extends State<LoginForm> {
       ),
     );
   }
+
+
 
   String _validateEmail(String value) {
     if (value.isEmpty) {
@@ -455,7 +465,7 @@ class _LoginFormState extends State<LoginForm> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         duration: Duration(seconds: 2),
         content: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text("대소문자, 특수문자(!@#\$), 숫자로만 입력하세요.", style: TextStyle(fontSize: 18))
+          Text("비밀번호는 대소문자, 특수문자(!@#\$), 숫자로만 입력하세요.", style: TextStyle(fontSize: 18))
         ]),
         backgroundColor: Colors.red,
       ));
