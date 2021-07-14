@@ -1,4 +1,3 @@
-
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,8 +21,6 @@ class SignUpForm extends StatefulWidget {
   _SignUpFormState createState() => _SignUpFormState();
 }
 
-
-
 class _SignUpFormState extends State<SignUpForm> {
   bool value = false;
   final _formKey = GlobalKey<FormState>();
@@ -33,6 +30,7 @@ class _SignUpFormState extends State<SignUpForm> {
   final _phoneNumberController1 = TextEditingController();
   final _phoneNumberController2 = TextEditingController();
   final _phoneNumberController3 = TextEditingController();
+  final _authenticationrController = TextEditingController();
 
   SignUpBloc _signUpBloc;
 
@@ -41,7 +39,6 @@ class _SignUpFormState extends State<SignUpForm> {
     super.initState();
     _signUpBloc = BlocProvider.of<SignUpBloc>(context);
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +49,7 @@ class _SignUpFormState extends State<SignUpForm> {
             SnackBar(
               duration: Duration(seconds: 2),
               content:
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 Text(
                   "회원가입 실패",
                   style: TextStyle(fontSize: 18),
@@ -65,11 +62,12 @@ class _SignUpFormState extends State<SignUpForm> {
         if (state is SignUpSuccess) {
           // Navigator.of(context).pushNamedAndRemoveUntil(
           //     '/wallet', (Route<dynamic> route) => false);
-          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-              builder: (BuildContext context) =>
-                  SingUpComplated()), (route) => false);
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => SingUpComplated()),
+              (route) => false);
         }
-
       },
       child: BlocBuilder<SignUpBloc, SignUpState>(builder: (context, state) {
         Size size = MediaQuery.of(context).size;
@@ -114,7 +112,7 @@ class _SignUpFormState extends State<SignUpForm> {
                           ])),
                       child: Center(
                         child: Text(
-                          "GMC",
+                          "GGC",
                           style: TextStyle(
                               fontSize: 50,
                               fontWeight: FontWeight.bold,
@@ -259,8 +257,10 @@ class _SignUpFormState extends State<SignUpForm> {
                         height: 50,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            gradient: LinearGradient(
-                                colors: [Color(0xffd25a7c), Color(0xfff9cc83)])),
+                            gradient: LinearGradient(colors: [
+                              Color(0xffd25a7c),
+                              Color(0xfff9cc83)
+                            ])),
                         child: TextButton(
                             onPressed: () {
                               if (_formKey.currentState.validate()) {
@@ -288,6 +288,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   child: Column(
                     children: <Widget>[
                       TextFormField(
+                        controller: _authenticationrController,
                         decoration: InputDecoration(
                           contentPadding:
                               EdgeInsets.symmetric(vertical: 5, horizontal: 20),
@@ -436,10 +437,13 @@ class _SignUpFormState extends State<SignUpForm> {
     );
   }
 
-
   _onSignUpButtonPressed() {
-
     String _emailMsg = _validateEmail(_emailController.text);
+    String _phoneMsg = _validatePhone(_phoneNumberController1.text);
+    // String _pwMsg = _validatepassword(_passwordController.text);
+    String _pwMsg2 = _validatepassword2(_passwordController2.text);
+    // String _pwMsg2 = _validatepassword2(_passwordController2.text);
+
     if (_emailMsg != null) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         duration: Duration(seconds: 2),
@@ -454,51 +458,61 @@ class _SignUpFormState extends State<SignUpForm> {
     } else if (_passwordController.text == '') {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         duration: Duration(seconds: 2),
-        content: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text("비밀번호가 입력되지 않았습니다.", style: TextStyle(fontSize: 18))
-        ]),
+        content: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [Text("_pwMsg", style: TextStyle(fontSize: 18))]),
         backgroundColor: Colors.red,
       ));
-      _passwordController.text = "";
+      // _passwordController.text = "";
     } else if (_passwordController2.text == '') {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         duration: Duration(seconds: 2),
         content: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text("비밀번호 확인이 입력되지 않았습니다.", style: TextStyle(fontSize: 18))
+          Text(_pwMsg2, style: TextStyle(fontSize: 18))
         ]),
         backgroundColor: Colors.red,
       ));
-      _passwordController2.text = "";
-    } else if(_phoneNumberController1.text == '' || _phoneNumberController2.text == '' || _phoneNumberController3.text == '' ) {
+       
+      // _passwordController2.text = "";
+    } else if (_authenticationrController.text == '') {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         duration: Duration(seconds: 2),
-        content: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text("휴대폰 번호가 입력되지 않았습니다.", style: TextStyle(fontSize: 18))
-        ]),
+        content: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [Text("인증번호를 입력해 주세요.", style: TextStyle(fontSize: 18))]),
+        backgroundColor: Colors.red,
+      ));
+    } else if (_phoneNumberController1.text == '' ||
+        _phoneNumberController2.text == '' ||
+        _phoneNumberController3.text == '') {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        duration: Duration(seconds: 2),
+        content: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [Text(_phoneMsg, style: TextStyle(fontSize: 18))]),
         backgroundColor: Colors.red,
       ));
     } else if (_emailMsg == null && _passwordController.text != '') {
-      String phone = _phoneNumberController1.text + "-" + _phoneNumberController2.text + "-" + _phoneNumberController3.text;
+      String phone = _phoneNumberController1.text +
+          "-" +
+          _phoneNumberController2.text +
+          "-" +
+          _phoneNumberController3.text;
 
       // _signUpBloc.add(SignUpEmailChanged("", "", "", ""));
 
       //_signUpBloc.add();
 
-      SignUpEvent _signUpEvent = SignUpButtonPressed(
-          _emailController.text,
-          phone,
-          _passwordController.text,
-          _passwordController2.text
-      );
+      SignUpEvent _signUpEvent = SignUpButtonPressed(_emailController.text,
+          phone, _passwordController.text, _passwordController2.text);
 
       _signUpBloc.add(_signUpEvent);
-
     }
   }
 
   String _validateEmail(String value) {
     if (value.isEmpty) {
-      return '이메일을 입력하세요.';
+      return '이메일 주소를 확인하시기 바랍니다.';
     }
     if (!EmailValidator.validate(value)) {
       return '이메일 형식이 틀립니다.\n이메일을 확인해주세요.';
@@ -506,5 +520,41 @@ class _SignUpFormState extends State<SignUpForm> {
     return null;
   }
 
+   String _validatePhone(String value) {
+    if (value.isEmpty) return '핸드폰 번호를 입력해 주세요.';
+    Pattern pattern = r'/^[0-9]+$/;';
+    RegExp regex = new RegExp(pattern);
+    if (!regex.hasMatch(value))
+      return '핸드폰 번호는 숫자만 입력 가능합니다.';
+    else
+      return null;
+  }
+  // String _validatepassword(String value) {
+  //   if (value.isEmpty) 
+  //     return '비밀번호를 입력해 주세요.';
+    
+  //     Pattern pattern =
+  //         r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$';
+  //     RegExp regex = new RegExp(pattern);
+  //     if (!regex.hasMatch(value))
+  //       return '비밀번호는 영어/숫자/특수문자 최소 1자리를\n포함한 8자리 이상만 가능합니다.';
+  //     else
+  //       return null;
+  // }
 
+  String _validatepassword2(String value) {
+    if (value.isEmpty) {
+      return '비밀번호 확인을 입력해 주세요.';
+    }
+      Pattern pattern =
+          r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$';
+      RegExp regex = new RegExp(pattern);
+      if (!regex.hasMatch(value))
+        return '비밀번호는 8자 이상,\n영어,숫자,특수문자만 허용됩니다.';
+      else
+        return null;
+  }
+
+
+ 
 }

@@ -95,7 +95,7 @@ class _TronReceiveState extends State<TronReceive> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: buildTron(address),
+                      child: buildTron(address, context),
                     )
                   ],
                 ),
@@ -109,7 +109,7 @@ class _TronReceiveState extends State<TronReceive> {
   }
 }
 
-Widget buildTron(String address) {
+Widget buildTron(String address, context) {
   final _walletController = TextEditingController();
   _walletController.text = address;
 
@@ -222,7 +222,14 @@ Widget buildTron(String address) {
           height: 20,
         ),
         OutlinedButton(
-          onPressed: () {},
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text("주소가 복사되었습니다.",),
+                backgroundColor: Colors.black,
+              ),
+            );
+          },
           child: Text(
             "주소복사",
             style: TextStyle(

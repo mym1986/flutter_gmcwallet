@@ -13,25 +13,24 @@ class MyPage extends StatefulWidget {
 }
 
 class _MyPageState extends State<MyPage> {
-
   String email = "";
   final _coinRepository = CoinRepository();
   String address = "";
   _MyPageState() {
     _getEmail().then((val) => setState(() {
-      email = val.toString();
-      _coinRepository.getWallet(val.toString()).then((result) =>
-          setState(() {
-            address = result["address"];
-          }));
-    }));
+          email = val.toString();
+          _coinRepository
+              .getWallet(val.toString())
+              .then((result) => setState(() {
+                    address = result["address"];
+                  }));
+        }));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
+      body: Stack(children: [
         ClipPath(
           clipper: ShapeClipper2(),
           child: Container(
@@ -56,7 +55,7 @@ class _MyPageState extends State<MyPage> {
             height: 140,
           ),
         ),
-         Padding(
+        Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),
           child: SingleChildScrollView(
             child: Padding(
@@ -76,8 +75,8 @@ class _MyPageState extends State<MyPage> {
                           )),
                       Text(
                         "마이페이지",
-                        style:
-                            TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       )
                     ],
                   ),
@@ -117,7 +116,7 @@ class _MyPageState extends State<MyPage> {
                       style: TextStyle(color: Colors.black),
                       decoration: InputDecoration(
                         contentPadding:
-                            EdgeInsets.symmetric(horizontal: 18, vertical: 20),
+                            EdgeInsets.symmetric(horizontal: 18, vertical: 11),
                         labelText: email,
                         labelStyle: TextStyle(
                           fontSize: 16,
@@ -159,21 +158,24 @@ class _MyPageState extends State<MyPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            Get.to(PwdChange());
-                          },
-                          child: Text(
-                            "변경",
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0XFFff7575),
-                            padding:
-                                EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
+                        Container(
+                          width: 110,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Get.to(PwdChange());
+                            },
+                            child: Text(
+                              "변경",
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Color(0XFFff7575),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 40, vertical: 10),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
                             ),
                           ),
                         ),
@@ -197,7 +199,8 @@ class _MyPageState extends State<MyPage> {
                     ),
                   ),
                   SizedBox(
-                    height: 10,),
+                    height: 10,
+                  ),
                   Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -213,7 +216,7 @@ class _MyPageState extends State<MyPage> {
                       style: TextStyle(color: Colors.black),
                       decoration: InputDecoration(
                         contentPadding:
-                            EdgeInsets.symmetric(horizontal: 18, vertical: 20),
+                            EdgeInsets.symmetric(horizontal: 18, vertical: 11),
                         labelText: address,
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey.shade300),
@@ -226,25 +229,39 @@ class _MyPageState extends State<MyPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Text(
-                            "주소복사",
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0XFFff7575),
-                            padding:
-                                EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
+                        Container(
+                          width: 110,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    "주소가 복사되었습니다.",
+                                  ),
+                                  backgroundColor: Colors.black,
+                                ),
+                              );
+                            },
+                            child: Text(
+                              "주소복사",
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Color(0XFFff7575),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 25, vertical: 10),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
                             ),
                           ),
                         ),
@@ -256,12 +273,11 @@ class _MyPageState extends State<MyPage> {
             ),
           ),
         ),
-        ]
-      ),
+      ]),
     );
   }
 
-  Future<String> _getEmail() async{
+  Future<String> _getEmail() async {
     final FlutterSecureStorage storage = FlutterSecureStorage();
     return await storage.read(key: "User");
   }
