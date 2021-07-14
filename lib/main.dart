@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gmcwallet/Bloc/auth_bloc/Auth.dart';
 import 'package:flutter_gmcwallet/Bloc/auth_bloc/AuthenticationBloc.dart';
 import 'package:flutter_gmcwallet/Screen/CoinHome/CoinHome.dart';
+import 'package:flutter_gmcwallet/Screen/CoinHome/components/Mypage.dart';
 import 'package:flutter_gmcwallet/Screen/HomeScreen.dart';
 import 'package:flutter_gmcwallet/Simple_bloc_observer.dart';
 import 'package:flutter_gmcwallet/repository/repository.dart';
