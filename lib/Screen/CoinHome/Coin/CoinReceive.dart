@@ -223,6 +223,7 @@ Widget buildCoin(String address, context) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text("주소가 복사되었습니다."),
+                backgroundColor: Colors.black,
               ),
             );
           },

@@ -225,7 +225,8 @@ Widget buildTron(String address, context) {
           onPressed: () {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text("주소가 복사되었습니다."),
+                content: Text("주소가 복사되었습니다.",),
+                backgroundColor: Colors.black,
               ),
             );
           },
