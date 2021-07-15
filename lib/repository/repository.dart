@@ -8,10 +8,11 @@ class UserRepository{
   // static String mainUrl = "https://reqres.in";
   // var loginUrl = "$mainUrl/api/login";
 
-  //static String mainUrl = "http://192.168.35.229:18001/api/v1";
+  // static String mainUrl = "http://192.168.35.229:18001/api/v1";
   static String mainUrl = "http://183.111.67.189:18001/api/v1";
   var loginUrl = "$mainUrl/users/signIn";
   var signUpUrl = "$mainUrl/users/signUp";
+  var changePasswordUrl = "$mainUrl/users/changePassword";
 
   final FlutterSecureStorage storage = FlutterSecureStorage();
   final Dio _dio = Dio();
@@ -25,6 +26,28 @@ class UserRepository{
     }
   }
 
+  Future<String> changePassword(String email, String oldPassword, String password, String confirmPassword) async{
+    var data = {
+      "email": email,
+      "oldPassword": oldPassword,
+      "password": password,
+      "confirmPassword": confirmPassword
+    };
+    var body = json.encode(data);
+    http.Response response = await http.Client().post(changePasswordUrl, headers: _JSON_HEADERS, body: body);
+
+    try {
+
+      //List data = jsonDecode(response.body);
+      Map<String, dynamic> map = json.decode(response.body);
+
+      return map["data"]["email"];
+    } catch (exception) {
+      print(response.body);
+      throw ('An error occurred');
+    }
+    //return response.data["user"];
+  }
 
   Future<void> persisteUser(String user) async{
     await storage.write(key: 'User', value: user);
@@ -36,7 +59,7 @@ class UserRepository{
   }
 
   static const Map<String, String> _JSON_HEADERS = {
-    "content-type": "application/json"
+    "content-type": "application/json;charset=UTF-8"
   };
 
   Future<String> login(String email, String password)async{

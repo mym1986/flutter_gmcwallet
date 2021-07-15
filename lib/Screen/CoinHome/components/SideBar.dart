@@ -4,6 +4,7 @@ import 'package:flutter_gmcwallet/Screen/CoinHome/Tron/TronSend.dart';
 import 'package:flutter_gmcwallet/Screen/CoinHome/components/Mypage.dart';
 import 'package:flutter_gmcwallet/Screen/HomeScreen.dart';
 import 'package:flutter_gmcwallet/Screen/Login/loginScreen.dart';
+import 'package:flutter_gmcwallet/repository/CoinRepository.dart';
 import 'package:flutter_gmcwallet/repository/repository.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
@@ -19,21 +20,27 @@ class SideBar extends StatefulWidget {
 class _SideBarState extends State<SideBar> {
 
   final _userRepository = UserRepository();
-
+  final _coinRepository = CoinRepository();
   String email = "";
-
+  String address = "";
   _SideBarState() {
     _getEmail().then((val) => setState(() {
       email = val.toString();
       if(email == 'null') {
         Get.to(LoginScreen());
+      } else {
+        _coinRepository
+            .getWallet(val.toString())
+            .then((result) => setState(() {
+          address = result["address"];
+        }));
       }
     }));
   }
 
-  openURL()async{
-    if(await canLaunch("https://tronscan.org/#/")){
-      await launch("https://tronscan.org/#/");
+  openURL(String address)async{
+    if(await canLaunch("https://tronscan.org/#/address/" + address)){
+      await launch("https://tronscan.org/#/address/" + address);
     }else{
       throw 'Could Not Launch URL';
     }
@@ -81,7 +88,7 @@ class _SideBarState extends State<SideBar> {
               SizedBox(height: 5,),
               ListTile(
             leading: Icon(Icons.loop,size: 28,),
-              onTap: () {openURL();},
+              onTap: () {openURL(address);},
               title: Text(
                 "전송이력",
                 style: TextStyle(

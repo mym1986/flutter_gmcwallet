@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 
 class CoinRepository{
 
-  //static String mainUrl = "http://192.168.35.229:18001/api/v1";
+  // static String mainUrl = "http://192.168.35.229:18001/api/v1";
   static String mainUrl = "http://183.111.67.189:18001/api/v1";
   var createWalletUrl = "$mainUrl/tron/createWallet";
   var getBalanceUrl = "$mainUrl/tron/getBalance";

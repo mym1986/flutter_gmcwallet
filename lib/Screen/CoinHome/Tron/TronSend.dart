@@ -234,8 +234,9 @@ Widget buildTron2(String tronBalance, String email, BuildContext context) {
                   height: 10,
                 ),
                 Container(
+                  width: 180,
                   child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
                           tronBalance,
