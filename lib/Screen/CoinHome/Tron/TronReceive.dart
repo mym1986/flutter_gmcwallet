@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gmcwallet/Screen/CoinHome/CoinHome.dart';
 import 'package:flutter_gmcwallet/Screen/CoinHome/components/ShapeClipper.dart';
 import 'package:flutter_gmcwallet/repository/CoinRepository.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -206,6 +207,7 @@ Widget buildTron(String address, context) {
             ],
           ),
           child: TextFormField(
+            enabled: false,
             controller: _walletController,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.symmetric(horizontal: 18,vertical: 20),
@@ -246,7 +248,9 @@ Widget buildTron(String address, context) {
           height: 80,
         ),
         ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(CoinHome());
+            },
             child: Text(
               "닫기",
               style: TextStyle(fontWeight: FontWeight.bold),
