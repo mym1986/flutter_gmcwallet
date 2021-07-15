@@ -39,8 +39,8 @@ class _SideBarState extends State<SideBar> {
   }
 
   openURL(String address)async{
-    if(await canLaunch("https://tronscan.org/#/address/" + address)){
-      await launch("https://tronscan.org/#/address/" + address);
+    if(await canLaunch("https://shasta.tronscan.org/#/address/" + address)){
+      await launch("https://shasta.tronscan.org/#/address/" + address);
     }else{
       throw 'Could Not Launch URL';
     }
