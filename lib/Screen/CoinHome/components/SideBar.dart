@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gmcwallet/Screen/CoinHome/CoinHome.dart';
+import 'package:flutter_gmcwallet/Screen/CoinHome/Tron/TronSend.dart';
 import 'package:flutter_gmcwallet/Screen/CoinHome/components/Mypage.dart';
 import 'package:flutter_gmcwallet/Screen/HomeScreen.dart';
 import 'package:flutter_gmcwallet/Screen/Login/loginScreen.dart';
 import 'package:flutter_gmcwallet/repository/repository.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SideBar extends StatefulWidget {
   const SideBar({Key key}) : super(key: key);
@@ -27,6 +30,15 @@ class _SideBarState extends State<SideBar> {
       }
     }));
   }
+
+  openURL()async{
+    if(await canLaunch("https://tronscan.org/#/")){
+      await launch("https://tronscan.org/#/");
+    }else{
+      throw 'Could Not Launch URL';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -56,7 +68,7 @@ class _SideBarState extends State<SideBar> {
           ListTile(
             leading: Icon(Icons.home_rounded,size: 28,),
               onTap: () {
-                Get.to(HomeScreen());
+                Get.to(CoinHome());
               },
               title: Text(
                 "Home",
@@ -69,9 +81,7 @@ class _SideBarState extends State<SideBar> {
               SizedBox(height: 5,),
               ListTile(
             leading: Icon(Icons.loop,size: 28,),
-              onTap: () {
-                
-              },
+              onTap: () {openURL();},
               title: Text(
                 "전송이력",
                 style: TextStyle(
